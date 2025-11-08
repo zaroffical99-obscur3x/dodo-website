@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoDo - Luxury Drinks & Coffee Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B8941F;
+            --rich-brown: #6F4E37;
+            --deep-coffee: #3E2723;
+            --cream: #FFF8DC;
+            --rose-gold: #B76E79;
+            --emerald: #50C878;
+            --luxury-purple: #6B46C1;
+            --sunset: #FF6B6B;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.95) 0%, rgba(62, 39, 35, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            padding: 1.2rem 3rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid var(--gold);
+            animation: slideDown 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--cream) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            letter-spacing: 3px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+            }
+        }
+
+        .cart-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--deep-coffee);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            overflow: hidden;
+        }
+
+        .cart-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cart-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1600') center/cover;
+            filter: brightness(0.4);
+            animation: zoomIn 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.6) 0%, rgba(62, 39, 35, 0.8) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--cream) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
+            letter-spacing: 4px;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6)); }
+            50% { filter: drop-shadow(0 0 30px rgba(212, 175, 55, 1)); }
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--cream);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--gold);
+            font-style: italic;
+            margin-top: 1rem;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(62, 39, 35, 0.9) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=1200') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--cream) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .about-card {
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.3) 0%, rgba(62, 39, 35, 0.3) 100%);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
+            border-radius: 25px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .about-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(212, 175, 55, 0.3);
+        }
+
+        .about-card i {
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .about-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .about-card p {
+            color: var(--cream);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Category Tabs */
+        .category-section {
+            padding: 4rem 2rem;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .category-tabs {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.8) 0%, rgba(62, 39, 35, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            border: 3px solid var(--gold);
+            color: var(--gold);
+            padding: 1.5rem 3rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .tab-btn:hover::before {
+            left: 100%;
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.4);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--deep-coffee);
+            border-color: transparent;
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.6);
+        }
+
+        /* Products Grid */
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 3rem;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .product-card {
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.4) 0%, rgba(62, 39, 35, 0.4) 100%);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.5s;
+        }
+
+        .product-card:hover::before {
+            top: -100%;
+            left: -100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 25px 70px rgba(212, 175, 55, 0.4);
+            border-color: var(--gold);
+        }
+
+        .product-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.2) rotate(2deg);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .product-info {
+            padding: 2rem;
+            position: relative;
+        }
+
+        .product-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-description {
+            color: var(--cream);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--cream) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--deep-coffee);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .add-to-cart-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .cart-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-content {
+            background: linear-gradient(135deg, rgba(111, 78, 55, 0.95) 0%, rgba(62, 39, 35, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            width: 90%;
+            max-width: 700px;
+            max-height: 85vh;
+            border-radius: 30px;
+            overflow: hidden;
+            animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: flex;
+            flex-direction: column;
+            border: 3px solid var(--gold);
+            box-shadow: 0 20px 80px rgba(212, 175, 55, 0.3);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100px) scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        .cart-header {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--deep-coffee);
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--deep-coffee);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-cart:hover {
+            transform: rotate(90deg) scale(1.2);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .cart-items {
+            padding: 2rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(62, 39, 35, 0.3) 100%);
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+            animation: slideIn 0.4s ease-out;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .cart-item:hover {
+            border-color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .cart-item-price {
+            color: var(--cream);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .qty-btn {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+            color: var(--deep-coffee);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .qty-btn:hover {
+            transform: scale(1.2);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .remove-item {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF4757 100%);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: auto;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .remove-item:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .cart-summary {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(62, 39, 35, 0.5) 100%);
+            border-top: 3px solid var(--gold);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--cream);
+        }
+
+        .summary-row.total {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--gold);
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            padding-top: 1rem;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            padding: 1.3rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 4rem;
+            color: var(--cream);
+        }
+
+        .empty-cart i {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: var(--gold);
+            opacity: 0.5;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(62, 39, 35, 0.95) 100%);
+            color: var(--cream);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 6rem;
+            border-top: 3px solid var(--gold);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--cream) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: var(--gold);
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 5px 15px rgba(212, 175, 55, 0.6));
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 4rem;
+        }
+
+        .spinner {
+            border: 5px solid rgba(212, 175, 55, 0.2);
+            border-top: 5px solid var(--gold);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .tab-btn {
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 1rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-mug-hot"></i> DoDo
+            </div>
+            <button class="cart-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i> Cart
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>DoDo</h1>
+            <p>Where Luxury Meets Flavor</p>
+            <div class="hero-subtitle">Crafting Perfection Since 2020</div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">Experience DoDo Excellence</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--cream); max-width: 800px; margin: 0 auto 3rem; line-height: 1.8;">
+                At DoDo, we believe every sip should be an unforgettable journey. Our master craftsmen blend the finest ingredients 
+                with passion and precision to create drinks that don't just satisfy - they inspire.
+            </p>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-award"></i>
+                    <h3>Premium Quality</h3>
+                    <p>We source only the finest ingredients from around the globe. Every bean, every fruit, every element is carefully selected to ensure unparalleled quality in every cup.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Fresh & Organic</h3>
+                    <p>100% organic and freshly prepared. We believe in natural goodness without compromises. From farm to cup, we maintain the highest standards of freshness.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Expert Baristas</h3>
+                    <p>Our team of certified baristas and mixologists bring years of experience and endless creativity. Each drink is a masterpiece crafted with skill and love.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Lightning-fast delivery to your doorstep. We ensure your drinks arrive fresh and perfectly prepared, maintaining the premium experience you deserve.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Made with Passion</h3>
+                    <p>Every drink is crafted with love and dedication. We don't just make beverages - we create memorable experiences that bring joy to your day.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Satisfaction Guaranteed</h3>
+                    <p>Your happiness is our priority. We stand behind every product with our 100% satisfaction guarantee. If you're not delighted, we'll make it right.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="category-section">
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="filterCategory('drinks')">
+                <i class="fas fa-glass-whiskey"></i> Juices & Shakes
+            </button>
+            <button class="tab-btn" onclick="filterCategory('coffee')">
+                <i class="fas fa-mug-hot"></i> Premium Coffee
+            </button>
+        </div>
+
+        <div class="products-container">
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fas fa-shopping-bag"></i> Your Cart</h2>
+                <button class="close-cart" onclick="toggleCart()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span><i class="fas fa-motorcycle"></i> Delivery:</span>
+                    <span id="delivery">$5.00</span>
+                </div>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$0.00</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">
+                    <i class="fab fa-whatsapp"></i> Checkout via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">DoDo</div>
+            <p style="margin-bottom: 1rem;">Premium Drinks & Coffee Experience</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p>&copy; 2025 DoDo. All Rights Reserved. Crafted with <i class="fas fa-heart" style="color: var(--gold);"></i></p>
+        </div>
+    </footer>
+
+    <script>
+        const products = {
+            drinks: [
+                {
+                    id: 1,
+                    name: "Tropical Mango Paradise",
+                    description: "Fresh alphonso mangoes blended with exotic passion fruit and a hint of mint",
+                    price: 12.99,
+                    image: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500",
+                    category: "drinks",
+                    badge: "Bestseller"
+                },
+                {
+                    id: 2,
+                    name: "Berry Bliss Supreme",
+                    description: "Premium blend of strawberries, blueberries, raspberries with Madagascar vanilla",
+                    price: 14.99,
+                    image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500",
+                    category: "drinks",
+                    badge: "Popular"
+                },
+                {
+                    id: 3,
+                    name: "Golden Sunrise",
+                    description: "Freshly squeezed oranges, pineapple chunks, and tropical passion fruit nectar",
+                    price: 11.99,
+                    image: "https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=500",
+                    category: "drinks"
+                },
+                {
+                    id: 4,
+                    name: "Emerald Detox Elixir",
+                    description: "Organic spinach, green apple, cucumber, celery, and fresh lemon juice",
+                    price: 13.99,
+                    image: "https://images.unsplash.com/photo-1610970881699-44a5587cabec?w=500",
+                    category: "drinks",
+                    badge: "Healthy"
+                },
+                {
+                    id: 5,
+                    name: "Velvet Chocolate Dream",
+                    description: "Belgian chocolate, premium ice cream, whipped cream, and chocolate shavings",
+                    price: 15.99,
+                    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500",
+                    category: "drinks",
+                    badge: "Luxury"
+                },
+                {
+                    id: 6,
+                    name: "Strawberry Heaven Cloud",
+                    description: "Fresh strawberries, French vanilla cream, honey drizzle, and rose petals",
+                    price: 13.49,
+                    image: "https://images.unsplash.com/photo-1579954115545-a95591f28bfc?w=500",
+                    category: "drinks"
+                },
+                {
+                    id: 7,
+                    name: "Dragon Fruit Fusion",
+                    description: "Exotic dragon fruit, coconut water, lime zest, and chia seeds",
+                    price: 14.49,
+                    image: "https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?w=500",
+                    category: "drinks",
+                    badge: "Exotic"
+                },
+                {
+                    id: 8,
+                    name: "Peanut Butter Powerhouse",
+                    description: "Organic peanut butter, banana, dates, oat milk, and protein boost",
+                    price: 13.99,
+                    image: "https://images.unsplash.com/photo-1622484211850-0b9d5a6c639f?w=500",
+                    category: "drinks",
+                    badge: "Protein"
+                },
+                {
+                    id: 9,
+                    name: "Watermelon Wave",
+                    description: "Juicy watermelon, fresh mint leaves, lime juice, and sparkling water",
+                    price: 10.99,
+                    image: "https://images.unsplash.com/photo-1587049352846-4a222e784eaf?w=500",
+                    category: "drinks"
+                },
+                {
+                    id: 10,
+                    name: "Avocado Bliss Shake",
+                    description: "Creamy avocado, honey, coconut milk, and vanilla bean essence",
+                    price: 14.99,
+                    image: "https://images.unsplash.com/photo-1623428187969-5da2dcea5ebf?w=500",
+                    category: "drinks",
+                    badge: "Creamy"
+                }
+            ],
+            coffee: [
+                {
+                    id: 11,
+                    name: "Espresso Royale",
+                    description: "Double shot of premium Italian espresso beans with golden crema",
+                    price: 8.99,
+                    image: "https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?w=500",
+                    category: "coffee",
+                    badge: "Strong"
+                },
+                {
+                    id: 12,
+                    name: "Caramel Macchiato Deluxe",
+                    description: "Espresso, steamed milk, vanilla syrup, topped with buttery caramel drizzle",
+                    price: 11.99,
+                    image: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=500",
+                    category: "coffee",
+                    badge: "Bestseller"
+                },
+                {
+                    id: 13,
+                    name: "Cappuccino Supreme",
+                    description: "Perfect balance of espresso, steamed milk, and velvety microfoam",
+                    price: 9.99,
+                    image: "https://images.unsplash.com/photo-1534778101976-62847782c213?w=500",
+                    category: "coffee",
+                    badge: "Classic"
+                },
+                {
+                    id: 14,
+                    name: "Mocha Luxury",
+                    description: "Rich espresso, premium cocoa, steamed milk, topped with whipped cream",
+                    price: 12.49,
+                    image: "https://images.unsplash.com/photo-1607260550778-aa9d29444ce1?w=500",
+                    category: "coffee",
+                    badge: "Sweet"
+                },
+                {
+                    id: 15,
+                    name: "Vanilla Latte Perfection",
+                    description: "Smooth espresso with Madagascar vanilla bean and silky steamed milk",
+                    price: 10.99,
+                    image: "https://images.unsplash.com/photo-1517487881594-2787fef5ebf7?w=500",
+                    category: "coffee",
+                    badge: "Popular"
+                },
+                {
+                    id: 16,
+                    name: "Iced Americano",
+                    description: "Bold cold brew espresso over ice with a smooth, robust finish",
+                    price: 9.49,
+                    image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500",
+                    category: "coffee",
+                    badge: "Cold"
+                },
+                {
+                    id: 17,
+                    name: "Hazelnut Dream Latte",
+                    description: "Espresso with roasted hazelnut syrup, steamed milk, and nutty foam",
+                    price: 11.49,
+                    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=500",
+                    category: "coffee",
+                    badge: "Nutty"
+                },
+                {
+                    id: 18,
+                    name: "White Chocolate Mocha",
+                    description: "Espresso, white chocolate sauce, steamed milk, and whipped cream",
+                    price: 12.99,
+                    image: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500",
+                    category: "coffee",
+                    badge: "Luxury"
+                },
+                {
+                    id: 19,
+                    name: "Affogato Elegante",
+                    description: "Hot espresso poured over premium vanilla gelato - Italian perfection",
+                    price: 13.99,
+                    image: "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=500",
+                    category: "coffee",
+                    badge: "Dessert"
+                },
+                {
+                    id: 20,
+                    name: "Cortado Tradicional",
+                    description: "Equal parts espresso and steamed milk for perfect balance",
+                    price: 8.49,
+                    image: "https://images.unsplash.com/photo-1485808191679-5f86510681a2?w=500",
+                    category: "coffee"
+                },
+                {
+                    id: 21,
+                    name: "Flat White Perfection",
+                    description: "Velvety microfoam poured over a double ristretto shot",
+                    price: 10.49,
+                    image: "https://images.unsplash.com/photo-1545665225-b23b99e4d45e?w=500",
+                    category: "coffee",
+                    badge: "Smooth"
+                },
+                {
+                    id: 22,
+                    name: "Pumpkin Spice Latte",
+                    description: "Seasonal blend of espresso, pumpkin, cinnamon, nutmeg, and cream",
+                    price: 11.99,
+                    image: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=500",
+                    category: "coffee",
+                    badge: "Seasonal"
+                }
+            ]
+        };
+
+        let cart = [];
+        let currentCategory = 'drinks';
+
+        window.onload = function() {
+            displayProducts(currentCategory);
+        };
+
+        function displayProducts(category) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '<div class="loading"><div class="spinner"></div></div>';
+            
+            setTimeout(() => {
+                const items = products[category];
+                grid.innerHTML = '';
+                
+                items.forEach(product => {
+                    const card = document.createElement('div');
+                    card.className = 'product-card';
+                    card.innerHTML = `
+                        <div class="product-image-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <div class="product-footer">
+                                <span class="product-price">${product.price.toFixed(2)}</span>
+                                <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }, 400);
+        }
+
+        function filterCategory(category) {
+            currentCategory = category;
+            displayProducts(category);
+            
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.closest('.tab-btn').classList.add('active');
+        }
+
+        function addToCart(productId) {
+            const allProducts = [...products.drinks, ...products.coffee];
+            const product = allProducts.find(p => p.id === productId);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({...product, quantity: 1});
+            }
+            
+            updateCart();
+            
+            event.target.innerHTML = '<i class="fas fa-check"></i> Added';
+            setTimeout(() => {
+                event.target.innerHTML = '<i class="fas fa-plus"></i> Add';
+            }, 1200);
+        }
+
+        function updateCart() {
+            const cartCount = document.getElementById('cartCount');
+            const cartItems = document.getElementById('cartItems');
+            const cartSummary = document.getElementById('cartSummary');
+            
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+                return;
+            }
+            
+            cartSummary.style.display = 'block';
+            cartItems.innerHTML = '';
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-info">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">${item.price.toFixed(2)}</div>
+                        <div class="cart-item-controls">
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <span style="padding: 0 1rem; font-weight: 700; color: var(--gold);">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const delivery = 5.00;
+            const total = subtotal + delivery;
+            
+            document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)}`;
+            document.getElementById('delivery').textContent = `${delivery.toFixed(2)}`;
+            document.getElementById('total').textContent = `${total.toFixed(2)}`;
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const delivery = 5.00;
+            const total = subtotal + delivery;
+            
+            let message = '*🌟 NEW ORDER from DoDo*%0A';
+            message += '*Premium Drinks & Coffee*%0A%0A';
+            message += '*📋 Order Details:*%0A';
+            message += '━━━━━━━━━━━━━━━━━━━━%0A';
+            
+            cart.forEach((item, index) => {
+                message += `${index + 1}. *${item.name}*%0A`;
+                message += `   Qty: ${item.quantity} x ${item.price.toFixed(2)} = ${(item.quantity * item.price).toFixed(2)}%0A%0A`;
+            });
+            
+            message += '━━━━━━━━━━━━━━━━━━━━%0A';
+            message += `*Subtotal:* ${subtotal.toFixed(2)}%0A`;
+            message += `*🏍️ Delivery:* ${delivery.toFixed(2)}%0A`;
+            message += `*💰 TOTAL:* ${total.toFixed(2)}%0A%0A`;
+            message += '_Thank you for choosing DoDo! We will confirm your order shortly._';
+            
+            const phone = '1234567890';
+            const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+            
+            window.open(whatsappURL, '_blank');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target === modal) {
+                toggleCart();
+            }
+        };
+    </script>
+</body>
+</html>
